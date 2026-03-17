@@ -29,5 +29,5 @@ class Entity(SQLModel, table=True):
 class APIResponce(BaseModel):
     status: Literal["success", "error"]
     error: Optional[Any] = ""
-    data: Optional[Dict[str, Any] | Sequence[Any]] = {}
+    data: Optional[Any] = {}
 

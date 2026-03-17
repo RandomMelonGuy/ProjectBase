@@ -6,6 +6,7 @@ from modules.auth.route import router as authRouter
 from modules.entities.route import router as entityRouter
 from modules.tags.route import router as tagRouter
 from modules.debug.route import router as debugRouter
+from modules.profiles.route import router as profileRouter
 from core.settings import settings
 
 from contextlib import asynccontextmanager
@@ -35,6 +36,7 @@ server.include_router(registerRouter, prefix="/register", tags=["Регистр�
 server.include_router(authRouter, prefix='/auth', tags=["Авторизация"])
 server.include_router(entityRouter, prefix="/entity", tags=["Сущности"])
 server.include_router(tagRouter, prefix="/tag", tags=["Теги"])
+server.include_router(profileRouter, prefix="/profile", tags=["Профили"])
 
 if settings.DEBUG:
     server.include_router(debugRouter, prefix="/debug", tags=["Дебаг"])

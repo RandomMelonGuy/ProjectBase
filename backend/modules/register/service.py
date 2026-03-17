@@ -3,6 +3,7 @@ from sqlmodel import Session, select
 from data.database import engine
 from .types import RegisterData
 from passlib.hash import pbkdf2_sha256
+from modules.profiles.types import Profile # Да простят меня за это
 
 class RegisterService:
     def __init__(self):
@@ -15,11 +16,12 @@ class RegisterService:
     def create_user(self, data: User):
         with Session(self.engine) as session:
             session.add(data)
-            print(data)
+            session.flush()
+            profile = Profile(user_id = data.id, username=data.username, desc=None)
+            session.add(profile)
+            print("profile")
             session.commit()
-            print(data)
-            password = pbkdf2_sha256.hash(data.password)
-            responce = {"username": data.username, "password": password, "email": data.email, "role": data.role}
+            responce = {"username": data.username, "email": data.email, "role": data.role}
 
         return responce
     
