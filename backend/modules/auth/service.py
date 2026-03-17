@@ -29,6 +29,7 @@ class AuthService:
             "id": user.id,
             "username": user.username,
             "email": user.email,
+            "role": user.role,
             "iat": time,
             "exp": timestamp,
             "jti": str(uuid4())
